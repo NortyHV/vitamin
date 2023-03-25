@@ -1,5 +1,6 @@
 package by.home.vitamin.service;
 
+import by.home.vitamin.config.BeanConfiguration;
 import by.home.vitamin.model.entity.Vitamin;
 import by.home.vitamin.model.entity.enums.Color;
 import by.home.vitamin.model.entity.enums.Type;
@@ -15,43 +16,33 @@ import java.util.stream.Collectors;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 public class VitaminService {
+    BeanConfiguration beanConfiguration;
 
-    Set<Enum> enumTypeList = new HashSet<Enum>();
 
-    public List<Vitamin> admissionSchedule(List vitamins) {
-        Set<Vitamin> morning = new HashSet<>();
-        Set<Vitamin> dinner = new HashSet<>();
-        Set<Vitamin> evening = new HashSet<>();
+    public List<List<ArrayList>> admissionSchedule(List<Vitamin> vitaminUser) {
+        List<ArrayList> morning = new ArrayList<>();
+        List<ArrayList> dinner = new ArrayList<>();
+        List<ArrayList> evening = new ArrayList<>();
+        int size = vitaminUser.size();
 
-        List<Vitamin> admissionSchedule = new ArrayList<>();
+        List<List<ArrayList>> admissionSchedule = new ArrayList<>();
+        admissionSchedule.add(morning);
+        admissionSchedule.add(dinner);
+        admissionSchedule.add(evening);
 
-        if(isWorkList(vitamins)) {
-            return null;
+
+        for (int i = 0; i < vitaminUser.size(); i++) {
+            for (int j = 0; j < beanConfiguration.vitamins().size(); j++) {
+                if (vitaminUser.get(i).equals(beanConfiguration.vitamins().get(j))){
+
+                }
+            }
         }
+
         return admissionSchedule;
 
+
     }
-boolean isWorkList(List<String> vitamins) {
-toUpperCase(vitamins);
-enumTypeList.add(Type.E);
-    enumTypeList.add(Type.B5);
-    enumTypeList.add(Type.B1);
-    enumTypeList.add(Type.B2);
-    enumTypeList.add(Type.B3);
-    enumTypeList.add(Type.B6);
-    enumTypeList.add(Type.B9);
-    enumTypeList.add(Type.B12);
-    enumTypeList.add(Type.D);
-    enumTypeList.add(Type.C);
-    enumTypeList.add(Type.Cu);
-    enumTypeList.add(Type.Fe);
-    enumTypeList.add(Type.A);
 
-       return new HashSet<>(vitamins).containsAll(enumTypeList);
-}
-
-void toUpperCase(List list){
-    list.stream().map(e -> e.toString().toUpperCase());
-}
 
 }
