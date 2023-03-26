@@ -27,8 +27,7 @@ public class BeanConfiguration {
         Map<Type, Vitamin> vitaminList = new HashMap<>();
 
 
-        Vitamin A = Vitamin.builder().colorByType(Map.ofEntries(Map.entry( Type.B1, Color.WHITE),
-              Map.entry(Type.B2, Color.WHITE),
+        Vitamin A = Vitamin.builder().colorByType(Map.ofEntries(Map.entry(Type.B1, Color.WHITE),
                 Map.entry(Type.B2, Color.WHITE),
                 Map.entry(Type.B3, Color.WHITE),
                 Map.entry(Type.B5, Color.WHITE),
@@ -38,11 +37,10 @@ public class BeanConfiguration {
                 Map.entry(Type.C, Color.GREEN),
                 Map.entry(Type.D, Color.RED),
                 Map.entry(Type.E, Color.GREEN),
+                Map.entry(Type.Fe, Color.GREEN),
                 Map.entry(Type.Cu, Color.WHITE),
                 Map.entry(Type.Zn, Color.GREEN))).build();
-
-vitaminList.put(Type.A, A);
-
+        vitaminList.put(Type.A, A);
 
 
 //                .A(Color.GRAY)
@@ -284,8 +282,6 @@ vitaminList.put(Type.A, A);
                 .Cu(Color.RED)
                 .Zn(Color.GRAY)
                 .build();
-
-
 
 
         return vitaminList;
