@@ -1,11 +1,13 @@
 package by.home.vitamin.model.entity;
 
 import by.home.vitamin.model.entity.enums.Color;
+import by.home.vitamin.model.entity.enums.Type;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.util.HashSet;
-import java.util.Set;
+
+import java.util.Map;
+
 
 @Data
 @Builder
@@ -15,22 +17,22 @@ import java.util.Set;
 public class Vitamin {
 
 
+    Map<Type, Color> colorByType;
 
-
-    Color A;
-    Color B1;
-    Color B2;
-    Color B3;
-    Color B5;
-    Color B6;
-    Color B9;
-    Color B12;
-    Color C;
-    Color D;
-    Color E;
-    Color Fe;
-    Color Cu;
-    Color Zn;
+//    Color A;
+//    Color B1;
+//    Color B2;
+//    Color B3;
+//    Color B5;
+//    Color B6;
+//    Color B9;
+//    Color B12;
+//    Color C;
+//    Color D;
+//    Color E;
+//    Color Fe;
+//    Color Cu;
+//    Color Zn;
 
 
 }

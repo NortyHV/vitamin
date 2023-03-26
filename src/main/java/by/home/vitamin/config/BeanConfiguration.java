@@ -2,12 +2,17 @@ package by.home.vitamin.config;
 
 import by.home.vitamin.model.entity.Vitamin;
 import by.home.vitamin.model.entity.enums.Color;
+import by.home.vitamin.model.entity.enums.Type;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.ArrayList;
-import java.util.List;
+
+import java.util.HashMap;
+
+import java.util.Map;
+
+import static by.home.vitamin.model.entity.enums.Type.*;
 
 @Configuration
 @RequiredArgsConstructor
@@ -16,64 +21,81 @@ public class BeanConfiguration {
 
 
     @Bean
-    public List<Vitamin> vitamins() {
+    public Map<Type, Vitamin> vitamins() {
 
 
-        List<Vitamin> vitaminList = new ArrayList<>();
+        Map<Type, Vitamin> vitaminList = new HashMap<>();
 
 
-        Vitamin A = Vitamin.builder()
-                .A(Color.GRAY)
-                .B1(Color.WHITE)
-                .B2(Color.WHITE)
-                .B3(Color.WHITE)
-                .B5(Color.WHITE)
-                .B6(Color.WHITE)
-                .B9(Color.WHITE)
-                .B12(Color.RED)
-                .C(Color.GREEN)
-                .D(Color.RED)
-                .E(Color.GREEN)
-                .Fe(Color.GREEN)
-                .Cu(Color.WHITE)
-                .Zn(Color.GREEN)
-                .build();
+        Vitamin A = Vitamin.builder().colorByType(Map.ofEntries(Map.entry( Type.B1, Color.WHITE),
+              Map.entry(Type.B2, Color.WHITE),
+                Map.entry(Type.B2, Color.WHITE),
+                Map.entry(Type.B3, Color.WHITE),
+                Map.entry(Type.B5, Color.WHITE),
+                Map.entry(Type.B6, Color.WHITE),
+                Map.entry(Type.B9, Color.WHITE),
+                Map.entry(Type.B12, Color.RED),
+                Map.entry(Type.C, Color.GREEN),
+                Map.entry(Type.D, Color.RED),
+                Map.entry(Type.E, Color.GREEN),
+                Map.entry(Type.Cu, Color.WHITE),
+                Map.entry(Type.Zn, Color.GREEN))).build();
+
+vitaminList.put(Type.A, A);
 
 
-        Vitamin B1 = Vitamin.builder()
-                .A(Color.WHITE)
-                .B1(Color.GRAY)
-                .B2(Color.RED)
-                .B3(Color.RED)
-                .B5(Color.GREEN)
-                .B6(Color.RED)
-                .B9(Color.WHITE)
-                .B12(Color.RED)
-                .C(Color.RED)
-                .D(Color.WHITE)
-                .E(Color.WHITE)
-                .Fe(Color.RED)
-                .Cu(Color.WHITE)
-                .Zn(Color.WHITE)
-                .build();
+
+//                .A(Color.GRAY)
+//                .B1(Color.WHITE)
+//                .B2(Color.WHITE)
+//                .B3(Color.WHITE)
+//                .B5(Color.WHITE)
+//                .B6(Color.WHITE)
+//                .B9(Color.WHITE)
+//                .B12(Color.RED)
+//                .C(Color.GREEN)
+//                .D(Color.RED)
+//                .E(Color.GREEN)
+//                .Fe(Color.GREEN)
+//                .Cu(Color.WHITE)
+//                .Zn(Color.GREEN)
+//                .build();
 
 
-        Vitamin B2 = Vitamin.builder()
-                .A(Color.WHITE)
-                .B1(Color.RED)
-                .B2(Color.GRAY)
-                .B3(Color.GREEN)
-                .B5(Color.GREEN)
-                .B6(Color.GREEN)
-                .B9(Color.GREEN)
-                .B12(Color.RED)
-                .C(Color.WHITE)
-                .D(Color.WHITE)
-                .E(Color.WHITE)
-                .Fe(Color.RED)
-                .Cu(Color.WHITE)
-                .Zn(Color.WHITE)
-                .build();
+        Vitamin B1 = Vitamin.builder().colorByType(Type.)..build();
+//                .A(Color.WHITE)
+//                .B1(Color.GRAY)
+//                .B2(Color.RED)
+//                .B3(Color.RED)
+//                .B5(Color.GREEN)
+//                .B6(Color.RED)
+//                .B9(Color.WHITE)
+//                .B12(Color.RED)
+//                .C(Color.RED)
+//                .D(Color.WHITE)
+//                .E(Color.WHITE)
+//                .Fe(Color.RED)
+//                .Cu(Color.WHITE)
+//                .Zn(Color.WHITE)
+//                .build();
+
+
+        Vitamin B2 = Vitamin.builder().colorByType(Type.A, Color.WHITE)
+//                .A(Color.WHITE)
+//                .B1(Color.RED)
+//                .B2(Color.GRAY)
+//                .B3(Color.GREEN)
+//                .B5(Color.GREEN)
+//                .B6(Color.GREEN)
+//                .B9(Color.GREEN)
+//                .B12(Color.RED)
+//                .C(Color.WHITE)
+//                .D(Color.WHITE)
+//                .E(Color.WHITE)
+//                .Fe(Color.RED)
+//                .Cu(Color.WHITE)
+//                .Zn(Color.WHITE)
+//                .build();
 
         Vitamin B3 = Vitamin.builder()
                 .A(Color.WHITE)
@@ -264,20 +286,6 @@ public class BeanConfiguration {
                 .build();
 
 
-        vitaminList.add(A);
-        vitaminList.add(B1);
-        vitaminList.add(B2);
-        vitaminList.add(B3);
-        vitaminList.add(B5);
-        vitaminList.add(B6);
-        vitaminList.add(B9);
-        vitaminList.add(B12);
-        vitaminList.add(C);
-        vitaminList.add(D);
-        vitaminList.add(E);
-        vitaminList.add(Fe);
-        vitaminList.add(Cu);
-        vitaminList.add(Zn);
 
 
         return vitaminList;
