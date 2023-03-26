@@ -21,30 +21,14 @@ public class VitaminService {
         List<ArrayList> morning = new ArrayList<>();
         List<ArrayList> dinner = new ArrayList<>();
         List<ArrayList> evening = new ArrayList<>();
-        int size = vitaminUser.size();
+
 
         List<List<ArrayList>> admissionSchedule = new ArrayList<>();
         admissionSchedule.add(morning);
         admissionSchedule.add(dinner);
         admissionSchedule.add(evening);
 
-        Map<Type, int[]> counters = new HashMap<Type, int[]>(size);
-        for (Type vitamin: vitaminUser) {
-            int[] counter = new int[3];
-            counters.put(vitamin, counter);
-            for (Type vitamin2: vitaminUser) {
-                if (!vitamin.equals(vitamin2)) {
-                    Vitamin v1 = beanConfiguration.vitamins().get(vitamin);
-                    switch (v1.getColorByType().get(vitamin2)) {
-                        case RED -> counter[0]++;
-                        case GREEN -> counter[1]++;
-                        case WHITE -> counter[2]++;
-                    }
-                }
-            }
-        }
-
-
+        Map<Type, int[]> counters = createTempContainer(vitaminUser);
 
 
 
@@ -53,4 +37,26 @@ public class VitaminService {
 
 
     }
+
+    Map<Type,int[]> createTempContainer(Set<Type> vitaminUser){
+
+        Map<Type, int[]> tempContainer = new HashMap<>(vitaminUser.size());
+        for (Type typeVitamin: vitaminUser) {
+            int[] counter = new int[3];
+            tempContainer.put(typeVitamin, counter);       //tempContainer - контейнер для кол-ва (RED, GREEN, WHITE)
+            for (Type typeVitamin2: vitaminUser) {
+                if (!typeVitamin.equals(typeVitamin2)) {
+                    Vitamin v1 = beanConfiguration.vitamins().get(typeVitamin);
+                    switch (v1.getColorByType().get(typeVitamin2)) {
+                        case RED -> counter[0]++;
+                        case GREEN -> counter[1]++;
+                        case WHITE -> counter[2]++;
+                    }
+                }
+            }
+        }
+        return tempContainer;
+    }
+
+
 }
