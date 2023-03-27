@@ -16,8 +16,22 @@ import java.util.Map;
 
 @Configuration
 @RequiredArgsConstructor
-
 public class BeanConfiguration {
+
+    @Bean
+    public Vitamin A() {
+        return Vitamin.builder().A(Color.GRAY).B1(Color.WHITE).build();
+    }
+
+    @Bean
+    public Vitamin B1() {
+        return Vitamin.builder().A(Color.WHITE).B1(Color.GRAY).build();
+    }
+
+    public Map<Type, Vitamin> vitaminsNew(Vitamin A, Vitamin B1) {
+        return Map.of(Type.A, A,
+                Type.B1, B1);
+    }
 
 
     @Bean

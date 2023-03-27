@@ -19,6 +19,10 @@ public class Vitamin {
 
     Map<Type, Color> colorByType;
 
+    Color B1;
+
+    Color A;
+
 //    Color A;
 //    Color B1;
 //    Color B2;
