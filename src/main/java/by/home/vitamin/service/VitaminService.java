@@ -18,8 +18,6 @@ public class VitaminService {
 
     Map<Type, Vitamin> vitamins;
 
-    Map<Type, Vitamin> vitaminsNew;
-
 
     public List<List<ArrayList>> admissionSchedule(Set<Type> vitaminUser) {
         List<ArrayList> morning = new ArrayList<>();
@@ -34,11 +32,10 @@ public class VitaminService {
 
         Map<Type, int[]> counters = createTempContainer(vitaminUser);
 
-        Color ab1 = vitamins.get(Type.A).getColorByType().get(Type.B1);
 
-        Color ab1_new = vitaminsNew.get(Type.A).getB1();
+        Color ab1_new = vitamins.get(Type.A).getB1();
 
-        Color b1a = vitaminsNew.get(Type.B1).getA();
+        Color b1a = vitamins.get(Type.B1).getA();
 
         return admissionSchedule;
 

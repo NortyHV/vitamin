@@ -28,6 +28,7 @@ public class BeanConfiguration {
         return Vitamin.builder().A(Color.WHITE).B1(Color.GRAY).build();
     }
 
+    @Bean
     public Map<Type, Vitamin> vitaminsNew(Vitamin A, Vitamin B1) {
         return Map.of(Type.A, A,
                 Type.B1, B1);
