@@ -1,7 +1,7 @@
 package by.home.vitamin.service;
 
-import by.home.vitamin.config.BeanConfiguration;
 import by.home.vitamin.model.entity.Vitamin;
+import by.home.vitamin.model.entity.enums.Color;
 import by.home.vitamin.model.entity.enums.Type;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
@@ -14,7 +14,9 @@ import java.util.*;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 public class VitaminService {
-    BeanConfiguration beanConfiguration;
+
+    public Map<Type, Vitamin> vitamins;
+//    Map<Type, Vitamin> vitaminsMap;
 
 
     public List<List<ArrayList>> admissionSchedule(Set<Type> vitaminUser) {
@@ -31,22 +33,23 @@ public class VitaminService {
         Map<Type, int[]> counters = createTempContainer(vitaminUser);
 
 
-
+//        Color ab1_new = vitaminsMap.get(Type.A).getB1();
 
         return admissionSchedule;
 
 
     }
 
+
     Map<Type,int[]> createTempContainer(Set<Type> vitaminUser){
 
         Map<Type, int[]> tempContainer = new HashMap<>(vitaminUser.size());
         for (Type typeVitamin: vitaminUser) {
             int[] counter = new int[3];
-            tempContainer.put(typeVitamin, counter);       //tempContainer - контейнер для кол-ва (RED, GREEN, WHITE)
+            tempContainer.put(typeVitamin, counter);      //tempContainer - контейнер для кол-ва (RED, GREEN, WHITE)
             for (Type typeVitamin2: vitaminUser) {
                 if (!typeVitamin.equals(typeVitamin2)) {
-                    Vitamin v1 = beanConfiguration.vitamins().get(typeVitamin);
+                    Vitamin v1 = vitamins.get(typeVitamin);
                     switch (v1.getColorByType().get(typeVitamin2)) {
                         case RED -> counter[0]++;
                         case GREEN -> counter[1]++;

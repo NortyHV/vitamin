@@ -17,22 +17,22 @@ import java.util.Map;
 public class Vitamin {
 
 
-    Map<Type, Color> colorByType;
+  Map<Type, Color> colorByType;
 
-//    Color A;
-//    Color B1;
-//    Color B2;
-//    Color B3;
-//    Color B5;
-//    Color B6;
-//    Color B9;
-//    Color B12;
-//    Color C;
-//    Color D;
-//    Color E;
-//    Color Fe;
-//    Color Cu;
-//    Color Zn;
+    Color A;
+    Color B1;
+    Color B2;
+    Color B3;
+    Color B5;
+    Color B6;
+    Color B9;
+    Color B12;
+    Color C;
+    Color D;
+    Color E;
+    Color Fe;
+    Color Cu;
+    Color Zn;
 
 
 }
