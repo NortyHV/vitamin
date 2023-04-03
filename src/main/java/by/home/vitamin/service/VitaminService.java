@@ -4,6 +4,7 @@ import by.home.vitamin.model.entity.Vitamin;
 import by.home.vitamin.model.entity.enums.Color;
 import by.home.vitamin.model.entity.enums.Type;
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,8 @@ import java.util.*;
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequiredArgsConstructor
 public class VitaminService {
+
+
 
     public Map<Type, Vitamin> vitamins;
 //    Map<Type, Vitamin> vitaminsMap;
@@ -60,6 +63,7 @@ public class VitaminService {
         }
         return tempContainer;
     }
+
 
 
 }
