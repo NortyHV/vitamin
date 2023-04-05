@@ -1,24 +1,27 @@
 package by.home.vitamin.service;
 
 import by.home.vitamin.model.entity.Vitamin;
-import by.home.vitamin.model.entity.enums.Color;
 import by.home.vitamin.model.entity.enums.Type;
-import lombok.AccessLevel;
+
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+import static lombok.AccessLevel.PRIVATE;
+
 @Service
-@FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
+@FieldDefaults(level = PRIVATE)
 @RequiredArgsConstructor
+@AllArgsConstructor
+
 public class VitaminService {
 
 
-
-    public Map<Type, Vitamin> vitamins;
+    Map<Type, Vitamin> vitamins;
 //    Map<Type, Vitamin> vitaminsMap;
 
 
@@ -44,13 +47,13 @@ public class VitaminService {
     }
 
 
-    Map<Type,int[]> createTempContainer(Set<Type> vitaminUser){
+    Map<Type, int[]> createTempContainer(Set<Type> vitaminUser) {
 
         Map<Type, int[]> tempContainer = new HashMap<>(vitaminUser.size());
-        for (Type typeVitamin: vitaminUser) {
+        for (Type typeVitamin : vitaminUser) {
             int[] counter = new int[3];
             tempContainer.put(typeVitamin, counter);      //tempContainer - контейнер для кол-ва (RED, GREEN, WHITE)
-            for (Type typeVitamin2: vitaminUser) {
+            for (Type typeVitamin2 : vitaminUser) {
                 if (!typeVitamin.equals(typeVitamin2)) {
                     Vitamin v1 = vitamins.get(typeVitamin);
                     switch (v1.getColorByType().get(typeVitamin2)) {
@@ -64,6 +67,19 @@ public class VitaminService {
         return tempContainer;
     }
 
+    LinkedList<Type> analyticsVitamin(@NotNull Map<Type, int[]> temp) {
+        LinkedList<Type> result = new LinkedList<>();
+        int count = 0;
 
+        temp.forEach((key, arr) -> {
 
+            if (arr[0] >= count) {
+                result.addFirst(key);
+                count == arr[0];
+            } else {
+                result.addLast(key);
+            }
+        });
+        return result;
+    }
 }

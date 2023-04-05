@@ -7,10 +7,7 @@ import by.home.vitamin.model.entity.enums.Type;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -47,6 +44,7 @@ public class VitaminServiceTest {
                     Map.entry(Type.Cu, Color.WHITE),
                     Map.entry(Type.Zn, Color.WHITE))).build()));
 
+
     @Test
     @DisplayName(value = " Должен создать контейнер \"цветов совместимости\" правильно ")
     void createTempContainer_ok() {
@@ -54,7 +52,9 @@ public class VitaminServiceTest {
         vitaminUser.add(Type.A);
         vitaminUser.add(Type.B1);
 
-        Map<Type, int[]> expected = Map.of(Type.B1, new int[]{0, 0, 1}, Type.A, new int[]{0, 0, 1}); // то, каким должен быть результат работы алгоритма
+        Map<Type, int[]> expected = Map.of(              // то, каким должен быть результат работы алгоритма
+                Type.B1, new int[]{0, 0, 1},
+                Type.A, new int[]{0, 0, 1});
         Map<Type, int[]> actual = vitaminService.createTempContainer(vitaminUser);
         assertNotNull(actual);
         actual.entrySet().forEach(actualPair -> {
@@ -67,5 +67,20 @@ public class VitaminServiceTest {
                     }
                 }
         );
+    }
+
+
+    @Test
+    @DisplayName(value = " Должен создать LinkedList правильно ")
+    void createAnalyticsLinkedList_ok() {
+        Map<Type, int[]> temp = Map.of(Type.B1, new int[]{0, 0, 0}, Type.A, new int[]{1, 0, 1}, Type.B2, new int[]{1, 1, 2});
+
+        LinkedList<Type> expectedlList = new LinkedList<>();
+        expectedlList.addFirst(Type.B1);
+        expectedlList.addFirst(Type.A);
+        expectedlList.addFirst(Type.B1);
+        LinkedList<Type> actualList = vitaminService.analyticsVitamin(temp);
+        assertNotNull(actualList);
+        assertTrue(expectedlList.equals(actualList));
     }
 }
