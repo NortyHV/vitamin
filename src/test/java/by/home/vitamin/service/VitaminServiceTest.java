@@ -69,18 +69,21 @@ public class VitaminServiceTest {
         );
     }
 
-
     @Test
-    @DisplayName(value = " Должен создать LinkedList правильно ")
-    void createAnalyticsLinkedList_ok() {
-        Map<Type, int[]> temp = Map.of(Type.B1, new int[]{0, 0, 0}, Type.A, new int[]{1, 0, 1}, Type.B2, new int[]{1, 1, 2});
+    @DisplayName(value = " Должен найти самый проблемный витамин")
+    void findWorst_ok() {
+        Map<Type, int[]> cont = Map.of(
+                Type.B1, new int[]{0, 1, 1},
+                Type.A, new int[]{0, 2, 0},
+                Type.B2, new int[]{0, 1, 1});
 
-        LinkedList<Type> expectedlList = new LinkedList<>();
-        expectedlList.addFirst(Type.B1);
-        expectedlList.addFirst(Type.A);
-        expectedlList.addFirst(Type.B1);
-        LinkedList<Type> actualList = vitaminService.analyticsVitamin(temp);
-        assertNotNull(actualList);
-        assertTrue(expectedlList.equals(actualList));
+        Type expectedWorstOne = Type.B1;          // Type.B2 тоже походит -> ?
+        Type expectedWorstTwo = Type.B2;
+        Type actualWorst = vitaminService.findWorst(cont);
+
+        assertNotNull(actualWorst);
+        assertTrue(actualWorst.equals(expectedWorstOne) || actualWorst.equals(expectedWorstTwo));
+
+
     }
 }
