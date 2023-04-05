@@ -73,9 +73,9 @@ public class VitaminServiceTest {
     @DisplayName(value = " Должен найти самый проблемный витамин")
     void findWorst_ok() {
         Map<Type, int[]> cont = Map.of(
-                Type.B1, new int[]{0, 1, 1},
-                Type.A, new int[]{0, 2, 0},
-                Type.B2, new int[]{0, 1, 1});
+                Type.B1, new int[]{1, 0, 1},
+                Type.A, new int[]{0, 0, 2},
+                Type.B2, new int[]{1, 0, 1});
 
         Type expectedWorstOne = Type.B1;          // Type.B2 тоже походит -> ?
         Type expectedWorstTwo = Type.B2;
