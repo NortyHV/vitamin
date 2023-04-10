@@ -1,6 +1,7 @@
 package by.home.vitamin.service;
 
 import by.home.vitamin.config.BeanConfiguration;
+import by.home.vitamin.model.dto.CompatibilityCounterItem;
 import by.home.vitamin.model.entity.Vitamin;
 import by.home.vitamin.model.entity.enums.Color;
 import by.home.vitamin.model.entity.enums.Type;
@@ -52,19 +53,18 @@ public class VitaminServiceTest {
         vitaminUser.add(Type.A);
         vitaminUser.add(Type.B1);
 
-        Map<Type, int[]> expected = Map.of(              // то, каким должен быть результат работы алгоритма
-                Type.B1, new int[]{0, 0, 1},
-                Type.A, new int[]{0, 0, 1});
-        Map<Type, int[]> actual = vitaminService.createTempContainer(vitaminUser);
+        Map<Type, CompatibilityCounterItem> expected = Map.of(              // то, каким должен быть результат работы алгоритма
+                Type.B1, CompatibilityCounterItem.builder().red(0).green(0).white(1).build(),
+                Type.A, CompatibilityCounterItem.builder().red(0).green(0).white(1).build());
+        Map<Type, CompatibilityCounterItem> actual = vitaminService.createTempContainer(vitaminUser);
         assertNotNull(actual);
         actual.entrySet().forEach(actualPair -> {
                     assertTrue(expected.containsKey(actualPair.getKey()));
-                    int[] expectedValue = expected.get(actualPair.getKey());
-                    int[] actualValue = actualPair.getValue();
-                    assertEquals(expectedValue.length, actualValue.length);
-                    for (int i = 0; i < expectedValue.length; i++) {
-                        assertEquals(expectedValue[i], actualValue[i]);
-                    }
+                    CompatibilityCounterItem expectedValue = expected.get(actualPair.getKey());
+                    CompatibilityCounterItem actualValue = actualPair.getValue();
+                    assertEquals(expectedValue.getRed(), actualValue.getRed());
+                    assertEquals(expectedValue.getGreen(), actualValue.getGreen());
+                    assertEquals(expectedValue.getWhite(), actualValue.getWhite());
                 }
         );
     }
@@ -72,10 +72,10 @@ public class VitaminServiceTest {
     @Test
     @DisplayName(value = " Должен найти самый проблемный витамин")
     void findWorst_ok() {
-        Map<Type, int[]> cont = Map.of(
-                Type.B1, new int[]{1, 0, 1},
-                Type.A, new int[]{0, 0, 2},
-                Type.B2, new int[]{1, 0, 1});
+        Map<Type, CompatibilityCounterItem> cont = Map.of(
+                Type.B1, CompatibilityCounterItem.builder().red(1).green(0).white(1).build(),
+                Type.A, CompatibilityCounterItem.builder().red(0).green(0).white(2).build(),
+                Type.B2, CompatibilityCounterItem.builder().red(1).green(0).white(1).build());
 
         Type expectedWorstOne = Type.B1;          // Type.B2 тоже походит -> ?
         Type expectedWorstTwo = Type.B2;
