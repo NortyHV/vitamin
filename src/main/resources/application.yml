@@ -1,0 +1,18 @@
+server:
+  port : 8081
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres?currentSchema=vitamin
+    username: postgres
+    password: root
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true # ?????? ??? ???????
+        format_sql: true # ?????? ??? ???????
+    database: POSTGRESQL
+    hibernate:
+      ddl-auto: update
+      dialect: org.hibernate.dialect.PostgreSQL10Dialect
+
+

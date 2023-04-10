@@ -1,24 +1,28 @@
 package by.home.vitamin.Controller;
 
-import by.home.vitamin.config.BeanConfiguration;
-import by.home.vitamin.model.entity.enums.Type;
 import by.home.vitamin.service.VitaminService;
-import lombok.RequiredArgsConstructor;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
-@RestController
-@RequiredArgsConstructor
+
+@Controller
 public class VitaminController {
 
+    @Autowired
+    private VitaminService vitaminService;
 
-@GetMapping("/")
-    public String vitamins(){
 
-        return "vitamins";
+    @GetMapping("/")
+    public String vitamins(Model model) {
+        model.addAttribute("title", "Главная страница");
+
+        return "home";
     }
+
+
 }

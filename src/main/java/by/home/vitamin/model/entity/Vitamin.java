@@ -4,6 +4,7 @@ import by.home.vitamin.model.entity.enums.Color;
 import by.home.vitamin.model.entity.enums.Type;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 
 import java.util.Map;

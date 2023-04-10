@@ -4,19 +4,19 @@ import by.home.vitamin.model.entity.Vitamin;
 import by.home.vitamin.model.entity.enums.Color;
 import by.home.vitamin.model.entity.enums.Type;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
 
-import static by.home.vitamin.model.entity.enums.Color.*;
-import static lombok.AccessLevel.PRIVATE;
+import static by.home.vitamin.model.entity.enums.Color.GREEN;
+import static by.home.vitamin.model.entity.enums.Color.WHITE;
 
 @Service
-@FieldDefaults(level = PRIVATE)
+@FieldDefaults(level = AccessLevel.PRIVATE)
 @RequiredArgsConstructor
 @AllArgsConstructor
 
