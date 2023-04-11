@@ -16,19 +16,18 @@ import java.util.List;
 import java.util.Set;
 
 
-@RestController
+@Controller
 @RequestMapping("/test")
 public class VitaminController {
 
     @Autowired
     private VitaminService vitaminService;
 
-    AdmissionSheduleResponseDto admissionSheduleResponseDto;
+    private AdmissionSheduleResponseDto admissionSheduleResponseDto;
 
 
-    @GetMapping(value = "/")
-    public String vitamins(Model model) {
-        model.addAttribute("title", "Главная страница");
+    @GetMapping(value = "/home")
+    public String vitamins() {
 
         return "home";
     }
